@@ -9,6 +9,9 @@ if ! [ $(sudo systemctl status apache2) ]; then
 	
 	#sudo systemctl status apache2
 	sudo systemctl stop apache2
+	
+	# enable apache modules
+	sudo a2enmod proxy proxy_http
 
 	# setup config files
 	#if ! [ -L /etc/apache2 ]; then
@@ -19,6 +22,7 @@ if ! [ $(sudo systemctl status apache2) ]; then
 	if ! [ -L /etc/apache2/apache2.conf ]; then
 		sudo mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bkp
 		sudo ln -fs /vagrant/apache/apache2.conf /etc/apache2/apache2.conf
+		
 	fi
 
 	# setup log files
